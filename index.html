@@ -1,464 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FocusFlow | Modern Focus Routine</title>
+  <title>Focus Routine Bridge Page</title>
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-
     *{
-      font-family:'Inter',sans-serif;
+      font-family: 'Inter', sans-serif;
     }
 
     html{
-      scroll-behavior:smooth;
+      scroll-behavior: smooth;
     }
 
     body{
-      background:#050816;
-      overflow-x:hidden;
-      color:white;
-    }
-
-    body::before{
-      content:'';
-      position:fixed;
-      inset:0;
-      background:
-      radial-gradient(circle at top left, rgba(34,211,238,0.12), transparent 35%),
-      radial-gradient(circle at bottom right, rgba(124,58,237,0.12), transparent 35%);
-      pointer-events:none;
-      z-index:-2;
+      background: #060816;
+      overflow-x: hidden;
     }
 
     .glass{
-      background:rgba(255,255,255,0.04);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow:0 8px 32px rgba(0,0,0,0.25);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .gradient-text{
-      background:linear-gradient(to right,#67e8f9,#60a5fa,#c084fc);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      background: linear-gradient(to right, #67e8f9, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glow-btn{
+      transition: all 0.3s ease;
+    }
+
+    .glow-btn:hover{
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(34,211,238,0.25);
+    }
+
+    .card-hover{
+      transition: all 0.3s ease;
+    }
+
+    .card-hover:hover{
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(103,232,249,0.2);
     }
 
     .blob{
-      position:absolute;
-      border-radius:9999px;
-      filter:blur(90px);
-      opacity:0.25;
-      animation:float 10s ease-in-out infinite;
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(90px);
+      opacity: 0.25;
+      animation: float 8s ease-in-out infinite;
     }
 
     .blob1{
-      width:320px;
-      height:320px;
-      background:#06b6d4;
-      top:-100px;
-      left:-120px;
+      width: 320px;
+      height: 320px;
+      background: #06b6d4;
+      top: -80px;
+      left: -100px;
     }
 
     .blob2{
-      width:360px;
-      height:360px;
-      background:#7c3aed;
-      bottom:-120px;
-      right:-120px;
-      animation-delay:2s;
+      width: 360px;
+      height: 360px;
+      background: #7c3aed;
+      bottom: -120px;
+      right: -120px;
+      animation-delay: 2s;
     }
 
     .blob3{
-      width:260px;
-      height:260px;
-      background:#2563eb;
-      top:45%;
-      left:40%;
-      animation-delay:4s;
+      width: 260px;
+      height: 260px;
+      background: #2563eb;
+      top: 40%;
+      left: 45%;
+      animation-delay: 4s;
     }
 
     @keyframes float{
-      0%{transform:translateY(0px);}
-      50%{transform:translateY(-25px);}
-      100%{transform:translateY(0px);}
+      0%{
+        transform: translateY(0px);
+      }
+      50%{
+        transform: translateY(-25px);
+      }
+      100%{
+        transform: translateY(0px);
+      }
     }
 
     .grid-bg{
       background-image:
       linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size:60px 60px;
-    }
 
-    .glow-btn{
-      transition:all .35s ease;
-    }
-
-    .glow-btn:hover{
-      transform:translateY(-4px) scale(1.02);
-      box-shadow:
-      0 0 20px rgba(34,211,238,0.35),
-      0 0 50px rgba(59,130,246,0.25);
-    }
-
-    .card-hover{
-      transition:all .35s ease;
-    }
-
-    .card-hover:hover{
-      transform:translateY(-8px);
-      border-color:rgba(103,232,249,0.25);
-      background:rgba(255,255,255,0.06);
-    }
-
-    .fade-up{
-      opacity:0;
-      transform:translateY(40px);
-      animation:fadeUp 1s ease forwards;
-    }
-
-    @keyframes fadeUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      background-size: 60px 60px;
     }
 
     .sticky-cta{
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
-
   </style>
 </head>
 
-<body>
+<body class="text-white">
 
-<!-- BACKGROUND -->
-<div class="fixed inset-0 -z-10 overflow-hidden">
-
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-
-  <div class="absolute inset-0 grid-bg opacity-40"></div>
-
-</div>
-
-<!-- NAVBAR -->
-<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
-
-  <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-
-    <div class="text-xl font-semibold tracking-tight">
-      FocusFlow
-    </div>
-
-    <a href="https://your-affiliate-link.com"
-       target="_blank"
-       class="hidden md:inline-flex glow-btn bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-black font-semibold px-6 py-3 rounded-2xl">
-      Watch Presentation
-    </a>
-
+  <!-- Background -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <div class="absolute inset-0 grid-bg opacity-40"></div>
   </div>
 
-</header>
+  <!-- HERO SECTION -->
+  <section class="px-6 pt-28 pb-24 lg:pt-36 lg:pb-32">
 
-<!-- HERO -->
-<section class="px-5 sm:px-6 lg:px-8 pt-32 pb-24 lg:pt-40 lg:pb-32 fade-up">
+    <div class="max-w-6xl mx-auto text-center">
 
-  <div class="max-w-6xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-sm text-white/70 shadow-lg shadow-cyan-500/10 mb-8">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        Focus & Productivity Insights
+      </div>
 
-    <div class="inline-flex items-center gap-2 glass rounded-full px-5 py-2 text-sm text-white/70 mb-8">
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-semibold leading-tight tracking-tight max-w-5xl mx-auto">
+        Why Do So Many People
+        <span class="gradient-text">
+          Struggle To Focus Nowadays?
+        </span>
+      </h1>
 
-      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+      <p class="mt-8 text-lg sm:text-xl text-white/70 leading-8 max-w-2xl mx-auto">
+        Discover the simple audio-based routine getting attention online for helping improve concentration naturally.
+      </p>
 
-      Focus & Productivity Insights
+      <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+        <a href="https://your-affiliate-link.com"
+           target="_blank"
+           class="glow-btn bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold px-8 py-4 rounded-2xl">
+          Watch The Free Presentation
+        </a>
+
+        <div class="flex items-center gap-2 text-sm text-white/50">
+          <span class="w-2 h-2 rounded-full bg-green-400"></span>
+          Simple • Beginner Friendly • Modern Routine
+        </div>
+
+      </div>
+
+      <!-- Hero Cards -->
+      <div class="glass rounded-[32px] p-6 mt-16 shadow-2xl shadow-cyan-500/10">
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <div class="glass rounded-3xl p-6 text-left card-hover">
+            <div class="text-3xl mb-4">🎯</div>
+            <h3 class="text-xl font-semibold">
+              Attention Support
+            </h3>
+            <p class="text-white/65 mt-3 leading-7">
+              Explore routines designed to help create a calmer, more focused daily environment.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 text-left card-hover">
+            <div class="text-3xl mb-4">⚙️</div>
+            <h3 class="text-xl font-semibold">
+              Simple Daily Habit
+            </h3>
+            <p class="text-white/65 mt-3 leading-7">
+              Minimal effort routines that can easily fit into modern lifestyles.
+            </p>
+          </div>
+
+          <div class="glass rounded-3xl p-6 text-left card-hover">
+            <div class="text-3xl mb-4">🌙</div>
+            <h3 class="text-xl font-semibold">
+              Easy To Explore
+            </h3>
+            <p class="text-white/65 mt-3 leading-7">
+              Learn more through a short presentation and decide if it aligns with your goals.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROBLEM SECTION -->
+  <section class="px-6 py-24">
+
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center">
+
+        <p class="uppercase tracking-[0.3em] text-cyan-300/80 text-sm font-medium">
+          Everyday Challenges
+        </p>
+
+        <h2 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">
+          Modern Life Can Feel Overwhelming
+        </h2>
+
+        <p class="mt-6 text-lg text-white/65 leading-8 max-w-2xl mx-auto">
+          Many people struggle to stay consistent, focused, and mentally clear while balancing digital distractions and busy routines.
+        </p>
+
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-16">
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-3xl mb-5">
+            📱
+          </div>
+
+          <h3 class="text-xl font-semibold">
+            Constant Distractions
+          </h3>
+
+          <p class="mt-4 text-white/65 leading-7">
+            Notifications, endless scrolling, and digital overload can make it harder to stay focused.
+          </p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-3xl mb-5">
+            🧠
+          </div>
+
+          <h3 class="text-xl font-semibold">
+            Brain Fog
+          </h3>
+
+          <p class="mt-4 text-white/65 leading-7">
+            Busy schedules and information overload may leave many people mentally drained.
+          </p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-blue-500/20 flex items-center justify-center text-3xl mb-5">
+            ⚡
+          </div>
+
+          <h3 class="text-xl font-semibold">
+            Productivity Issues
+          </h3>
+
+          <p class="mt-4 text-white/65 leading-7">
+            Staying consistent with work, study, and routines has become harder in modern life.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOLUTION SECTION -->
+  <section class="px-6 py-24">
+
+    <div class="max-w-5xl mx-auto glass rounded-[40px] p-10 lg:p-16 shadow-2xl shadow-purple-500/10">
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div>
+
+          <div class="inline-flex px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-200 text-sm">
+            Simple Modern Routine
+          </div>
+
+          <h2 class="mt-6 text-3xl sm:text-5xl font-semibold tracking-tight">
+            A Simpler Approach To Daily Focus Habits
+          </h2>
+
+          <p class="mt-6 text-lg text-white/70 leading-8">
+            A growing number of people are turning to simple audio-based routines as part of their daily focus habits.
+          </p>
+
+          <p class="mt-5 text-white/60 leading-7">
+            This presentation explores why these routines are gaining attention and how some people are incorporating them into their productivity habits.
+          </p>
+
+        </div>
+
+        <div class="relative">
+
+          <div class="absolute inset-0 rounded-[32px] bg-gradient-to-br from-cyan-400/20 to-purple-500/20 blur-3xl"></div>
+
+          <div class="relative glass rounded-[32px] p-8">
+
+            <div class="flex items-center justify-between border-b border-white/10 pb-6">
+
+              <div>
+                <p class="text-sm text-white/50">
+                  Focus Routine
+                </p>
+
+                <h3 class="text-2xl font-semibold mt-2">
+                  Audio-Based Habit
+                </h3>
+              </div>
+
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black text-2xl shadow-lg shadow-cyan-500/20">
+                🎧
+              </div>
+
+            </div>
+
+            <div class="mt-8 space-y-4">
+
+              <div class="glass rounded-2xl px-5 py-4 flex items-center gap-4">
+                <div class="w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-300 flex items-center justify-center">
+                  ✓
+                </div>
+                <span class="text-white/75">
+                  Short daily listening routine
+                </span>
+              </div>
+
+              <div class="glass rounded-2xl px-5 py-4 flex items-center gap-4">
+                <div class="w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-300 flex items-center justify-center">
+                  ✓
+                </div>
+                <span class="text-white/75">
+                  Designed for busy lifestyles
+                </span>
+              </div>
+
+              <div class="glass rounded-2xl px-5 py-4 flex items-center gap-4">
+                <div class="w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-300 flex items-center justify-center">
+                  ✓
+                </div>
+                <span class="text-white/75">
+                  Simple and easy to explore
+                </span>
+              </div>
+
+              <div class="glass rounded-2xl px-5 py-4 flex items-center gap-4">
+                <div class="w-6 h-6 rounded-full bg-cyan-400/20 text-cyan-300 flex items-center justify-center">
+                  ✓
+                </div>
+                <span class="text-white/75">
+                  Modern minimalist approach
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
-    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight max-w-5xl mx-auto">
+  </section>
 
-      Why Do So Many People
+  <!-- BENEFITS -->
+  <section class="px-6 py-24">
 
-      <span class="gradient-text">
-        Struggle To Focus Nowadays?
-      </span>
+    <div class="max-w-6xl mx-auto">
 
-    </h1>
+      <div class="text-center">
 
-    <p class="mt-8 text-lg sm:text-xl text-white/70 leading-8 max-w-2xl mx-auto">
+        <p class="uppercase tracking-[0.3em] text-purple-300/80 text-sm font-medium">
+          Why People Are Exploring It
+        </p>
 
-      Discover the simple audio-based routine getting attention online for helping improve concentration naturally.
+        <h2 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">
+          Simple, Modern & Easy To Follow
+        </h2>
 
-    </p>
+      </div>
 
-    <div class="mt-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="text-3xl mb-5">✨</div>
+          <h3 class="text-xl font-semibold">
+            Beginner Friendly
+          </h3>
+          <p class="mt-4 text-white/65 leading-7">
+            Simple and approachable for people exploring better focus habits.
+          </p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="text-3xl mb-5">🎧</div>
+          <h3 class="text-xl font-semibold">
+            Easy Daily Routine
+          </h3>
+          <p class="mt-4 text-white/65 leading-7">
+            Designed to fit naturally into modern schedules.
+          </p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="text-3xl mb-5">🌍</div>
+          <h3 class="text-xl font-semibold">
+            Modern Lifestyle
+          </h3>
+          <p class="mt-4 text-white/65 leading-7">
+            Flexible enough for work, study, or home routines.
+          </p>
+        </div>
+
+        <div class="glass rounded-[32px] p-8 card-hover">
+          <div class="text-3xl mb-5">🚀</div>
+          <h3 class="text-xl font-semibold">
+            Simple To Follow
+          </h3>
+          <p class="mt-4 text-white/65 leading-7">
+            No complicated systems or overwhelming steps.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="px-6 py-24">
+
+    <div class="max-w-4xl mx-auto glass rounded-[40px] p-10 lg:p-16 text-center shadow-2xl shadow-cyan-500/10">
+
+      <h2 class="text-3xl sm:text-5xl font-semibold tracking-tight">
+        Ready To Learn More?
+      </h2>
+
+      <p class="mt-6 text-lg text-white/70 leading-8 max-w-2xl mx-auto">
+        Watch the short presentation to explore the growing interest around simple audio-based focus routines.
+      </p>
 
       <a href="https://your-affiliate-link.com"
          target="_blank"
-         class="glow-btn inline-flex items-center justify-center bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-black font-semibold px-8 py-4 rounded-2xl">
-
-        Watch The Free Presentation
-
+         class="glow-btn inline-flex mt-10 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold px-10 py-5 rounded-2xl text-lg">
+        Watch The Presentation
       </a>
 
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-4 mt-10 text-sm text-white/50">
-
-      <div class="glass rounded-full px-4 py-2">
-        Modern Focus Habits
-      </div>
-
-      <div class="glass rounded-full px-4 py-2">
-        Audio-Based Routines
-      </div>
-
-      <div class="glass rounded-full px-4 py-2">
-        Productivity Insights
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-<!-- PROBLEM SECTION -->
-<section class="px-5 sm:px-6 lg:px-8 py-24 fade-up">
-
-  <div class="max-w-6xl mx-auto">
-
-    <div class="text-center">
-
-      <p class="uppercase tracking-[0.3em] text-cyan-300/80 text-sm font-medium">
-        Everyday Challenges
-      </p>
-
-      <h2 class="mt-4 text-3xl sm:text-5xl font-semibold tracking-tight">
-        Modern Life Can Feel Overwhelming
-      </h2>
-
-      <p class="mt-6 text-lg text-white/65 leading-8 max-w-2xl mx-auto">
-        Many people struggle to stay consistent, focused, and mentally clear while balancing digital distractions.
+      <p class="mt-8 text-sm text-white/45 leading-6">
+        This website is an independent review/bridge page and may receive compensation for referrals.
       </p>
 
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 mt-16">
+  </section>
 
-      <div class="glass rounded-[32px] p-8 card-hover">
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 px-6 py-10">
 
-        <div class="text-4xl mb-5">📱</div>
-
-        <h3 class="text-xl font-semibold">
-          Constant Distractions
-        </h3>
-
-        <p class="mt-4 text-white/65 leading-7">
-          Notifications and digital overload can make it difficult to stay mentally focused.
-        </p>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 card-hover">
-
-        <div class="text-4xl mb-5">🧠</div>
-
-        <h3 class="text-xl font-semibold">
-          Brain Fog
-        </h3>
-
-        <p class="mt-4 text-white/65 leading-7">
-          Information overload may leave many people mentally drained throughout the day.
-        </p>
-
-      </div>
-
-      <div class="glass rounded-[32px] p-8 card-hover">
-
-        <div class="text-4xl mb-5">⚡</div>
-
-        <h3 class="text-xl font-semibold">
-          Productivity Issues
-        </h3>
-
-        <p class="mt-4 text-white/65 leading-7">
-          Staying productive has become harder in today’s fast-moving digital environment.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-
-<!-- SOLUTION -->
-<section class="px-5 sm:px-6 lg:px-8 py-24 fade-up">
-
-  <div class="max-w-5xl mx-auto glass rounded-[40px] p-10 lg:p-16">
-
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-white/50">
 
       <div>
-
-        <div class="inline-flex px-4 py-2 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-200 text-sm">
-          Simple Modern Routine
-        </div>
-
-        <h2 class="mt-6 text-3xl sm:text-5xl font-semibold tracking-tight">
-          A Simpler Approach To Focus Habits
-        </h2>
-
-        <p class="mt-6 text-lg text-white/70 leading-8">
-          A growing number of people are exploring simple audio-based routines as part of their daily focus habits.
-        </p>
-
+        © 2026 FocusFlow Media. All rights reserved.
       </div>
 
-      <div class="glass rounded-[32px] p-8">
+      <div class="flex flex-wrap gap-6 justify-center">
 
-        <div class="flex items-center justify-between border-b border-white/10 pb-6">
+        <a href="#" class="hover:text-white transition">
+          Privacy Policy
+        </a>
 
-          <div>
+        <a href="#" class="hover:text-white transition">
+          Disclaimer
+        </a>
 
-            <p class="text-sm text-white/50">
-              Audio-Based Routine
-            </p>
-
-            <h3 class="text-2xl font-semibold mt-2">
-              Daily Focus Habit
-            </h3>
-
-          </div>
-
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black text-2xl">
-            🎧
-          </div>
-
-        </div>
-
-        <div class="mt-8 space-y-4">
-
-          <div class="glass rounded-2xl px-5 py-4">
-            Short daily listening routine
-          </div>
-
-          <div class="glass rounded-2xl px-5 py-4">
-            Designed for modern lifestyles
-          </div>
-
-          <div class="glass rounded-2xl px-5 py-4">
-            Beginner friendly approach
-          </div>
-
-          <div class="glass rounded-2xl px-5 py-4">
-            Easy to explore
-          </div>
-
-        </div>
+        <a href="#" class="hover:text-white transition">
+          Contact
+        </a>
 
       </div>
 
     </div>
 
-  </div>
+  </footer>
 
-</section>
-
-<!-- CTA -->
-<section class="px-5 sm:px-6 lg:px-8 py-24 fade-up">
-
-  <div class="max-w-4xl mx-auto glass rounded-[40px] p-10 lg:p-16 text-center">
-
-    <h2 class="text-3xl sm:text-5xl font-semibold tracking-tight">
-      Ready To Learn More?
-    </h2>
-
-    <p class="mt-6 text-lg text-white/70 leading-8 max-w-2xl mx-auto">
-
-      Watch the short presentation to explore the growing interest around modern audio-based focus routines.
-
-    </p>
+  <!-- MOBILE STICKY CTA -->
+  <div class="fixed bottom-0 left-0 right-0 p-4 bg-black/40 border-t border-white/10 sticky-cta md:hidden z-50">
 
     <a href="https://your-affiliate-link.com"
        target="_blank"
-       class="glow-btn inline-flex mt-10 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-black font-semibold px-10 py-5 rounded-2xl text-lg">
-
-      Watch The Presentation
-
+       class="w-full flex justify-center items-center bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-semibold py-4 rounded-2xl shadow-2xl shadow-cyan-500/20">
+      Watch The Free Presentation
     </a>
 
-    <p class="mt-8 text-sm text-white/45 leading-6">
-      This website is an independent bridge/review page and may receive compensation for referrals.
-    </p>
-
   </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer class="border-t border-white/10 px-5 sm:px-6 lg:px-8 py-10">
-
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-white/50">
-
-    <div>
-      © 2026 FocusFlow Media. Independent informational bridge page.
-    </div>
-
-    <div class="flex flex-wrap gap-6 justify-center">
-
-      <a href="#" class="hover:text-white transition">
-        Privacy Policy
-      </a>
-
-      <a href="#" class="hover:text-white transition">
-        Disclaimer
-      </a>
-
-      <a href="#" class="hover:text-white transition">
-        Contact
-      </a>
-
-    </div>
-
-  </div>
-
-  <p class="text-center text-xs text-white/30 mt-6 max-w-3xl mx-auto">
-    This site is not affiliated with or endorsed by The Memory Wave creators.
-  </p>
-
-</footer>
-
-<!-- MOBILE STICKY CTA -->
-<div class="fixed bottom-0 left-0 right-0 p-4 bg-black/40 border-t border-white/10 sticky-cta md:hidden z-50">
-
-  <a href="https://your-affiliate-link.com"
-     target="_blank"
-     class="w-full flex justify-center items-center bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-black font-semibold py-4 rounded-2xl shadow-2xl shadow-cyan-500/20">
-
-    Watch The Free Presentation
-
-  </a>
-
-</div>
 
 </body>
 </html>
